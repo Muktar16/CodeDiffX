@@ -6,10 +6,13 @@ import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { CSSTransition } from "react-transition-group";
 import "./LineOfCode.css";
 
+//This is the comment for the
+//This is another comment line
+
 const LineOfCode = () => {
   const [fileContent, setFileContent] = useState("");
   const [loc, setLOC] = useState(0);
-  const [sloc, setSLOC] = useState(0);
+  const [showContent, setShowContent] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
   const validExtensions = [
@@ -23,6 +26,8 @@ const LineOfCode = () => {
     ".h",
     ".php",
   ];
+//this is a new line
+  const [sloc, setSLOC] = useState(0);
 
   const handleFileUpload = (file) => {
     const fileExtension = "." + file.name.split(".").pop().toLowerCase();
@@ -43,64 +48,9 @@ const LineOfCode = () => {
 
       // Calculate SLOC by excluding comments and blank lines
       let slocCount = 0;
-      let insideSingleLineComment = false;
-      let insideMultiLineComment = false;
-
       for (const line of lines) {
         const trimmedLine = line.trim();
-
-        // JavaScript, TypeScript, Java, C++, PHP: Single Line Comment starts with "//"
-        if (
-          !insideMultiLineComment &&
-          (trimmedLine.startsWith("//") || trimmedLine === "//")
-        ) {
-          continue; // Skip single-line comments
-        }
-
-        // JavaScript, TypeScript, Java: Multi Line Comment starts with "/*" and ends with "*/"
-        if (!insideSingleLineComment && trimmedLine.startsWith("/*")) {
-          insideMultiLineComment = true;
-        }
-
-        if (!insideSingleLineComment && trimmedLine.endsWith("*/")) {
-          insideMultiLineComment = false;
-          continue; // Skip multi-line comments
-        }
-
-        // Python: Single Line Comment starts with "#"
-        if (!insideMultiLineComment && trimmedLine.startsWith("#")) {
-          continue; // Skip single-line comments
-        }
-
-        // Python: Multi Line Comment starts and ends with triple quotes ''' or """
-        if (!insideSingleLineComment && trimmedLine.startsWith('"""')) {
-          insideMultiLineComment = true;
-        }
-
-        if (!insideSingleLineComment && trimmedLine.endsWith('"""')) {
-          insideMultiLineComment = false;
-          continue; // Skip multi-line comments
-        }
-
-        if (!insideSingleLineComment && trimmedLine.startsWith("'''")) {
-          insideMultiLineComment = true;
-        }
-
-        if (!insideSingleLineComment && trimmedLine.endsWith("'''")) {
-          insideMultiLineComment = false;
-          continue; // Skip multi-line comments
-        }
-
-        // Skip counting empty lines
-        if (trimmedLine === "") {
-          continue;
-        }
-
-        if (
-          trimmedLine &&
-          !insideSingleLineComment &&
-          !insideMultiLineComment
-        ) {
+        if (trimmedLine && !trimmedLine.startsWith("//")) {
           slocCount++;
         }
       }

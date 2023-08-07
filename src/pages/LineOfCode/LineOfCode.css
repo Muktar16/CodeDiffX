@@ -1,0 +1,30 @@
+
+/* CSS Transition for File Content */
+.file-content-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .file-content-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .file-content-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .file-content-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  /* Adjust this height as per your requirement */
+  .file-content-wrapper {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
