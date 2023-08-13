@@ -43,6 +43,7 @@ const RepositoryDiffViewer = () => {
     const newFileContents = await readFilesContent(filteredNewFiles);
 
     const diff = await diffRepositories(oldFileContents, newFileContents);
+    console.log(diff);
     setDiffResult(diff);
 
     let addedLines = 0;
@@ -225,7 +226,7 @@ const RepositoryDiffViewer = () => {
             <Typography.Title level={4}  style={{ color: "#f5222d" }}>Deleted files:</Typography.Title>
             <ul>
               {deletedFiles?.map((file, index) => (
-                <li key={index}>{file.name}</li>
+                <li key={index}>{file.name} </li>
               ))}
             </ul>
           </Col>

@@ -7,7 +7,7 @@ import FileDiffViewer from './pages/FilieDiffViewer/FileDiffViewer';
 import RepositoryDiffViewer from './pages/RepositoryDiffViewer/RepositoryDiffViewer';
 
 import './App.css'; // Import a custom CSS file for global styles
-// import TempPage from './pages/TempPage/TempPage';
+import TempPage from './pages/TempPage/TempPage';
 
 const { Header, Content } = Layout;
 
@@ -38,7 +38,7 @@ function App() {
             <Route path="/line-of-code" element={<LineOfCode />} />
             <Route path="/file-diff" element={<FileDiffViewer />} />
             <Route path="/repository-diff" element={<RepositoryDiffViewer />} />
-            {/* <Route path="/temp-page" element={<TempPage />} /> */}
+            <Route path="/temp-page" element={<TempPage />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </Content>
